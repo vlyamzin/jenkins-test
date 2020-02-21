@@ -27,6 +27,7 @@ pipeline {
                     writeJSON file: 'package.json', json: input, pretty: 4
                 }
                 sh "git status"
+                sh "git commit -a"
             }
         }
     }
