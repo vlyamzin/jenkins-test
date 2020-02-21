@@ -31,13 +31,7 @@ pipeline {
                 sh 'git config user.email \\"vlad.lyamzin@avenga.com\\"'
                 sh 'git add .'
                 sh 'git commit -m \\"a\\"'
-                sh 'git push'
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')]){
-                {
-                    sh("git push http://$username:$password@https://github.com/vlyamzin/jenkins-test")
-                }
-                }
+                sh 'git push origin master'
             }
         }
     }
