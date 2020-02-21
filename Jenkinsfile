@@ -32,10 +32,10 @@ pipeline {
                 sh 'git add .'
                 sh 'git commit -m \\"a\\"'
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')]){
-                {
-                    sh("git push http://$username:$password@https://github.com/vlyamzin/jenkins-test HEAD:master")
-                }
+                    withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')])
+                    {
+                        sh("git push http://$username:$password@https://github.com/vlyamzin/jenkins-test HEAD:master")
+                    }
                 }
             }
         }
