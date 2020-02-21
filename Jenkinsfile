@@ -34,7 +34,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')])
                     {
-                        sh("git push http://$username:$password@https://github.com/vlyamzin/jenkins-test HEAD:master")
+                        sh("git push https://$username:$password@github.com/vlyamzin/jenkins-test HEAD:master")
                     }
                 }
             }
