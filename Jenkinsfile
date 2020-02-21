@@ -3,6 +3,9 @@ pipeline {
             image 'node:latest' 
             args '-p 3000:3000' 
         }}
+    environment {
+        HOME="."
+    }
     stages {
         stage('init') {
             steps {
@@ -16,8 +19,16 @@ pipeline {
             when {
                 expression { env.APP_VERSION != env.TAG }
             }
+            environment
             steps {
                 echo 'Need to update version!'
+                script {
+                    def input = readJSON file: 'package.json'
+                    input['version'] = env.TAG
+                    writeJSON file: 'package.json', json: input, pretty: 4
+                }
+                sh 'git commit -a -m "Version: ${env.TAG}"'
+                sh 'git push origin master'
             }
         }
     }
