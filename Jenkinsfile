@@ -19,7 +19,6 @@ pipeline {
             when {
                 expression { env.APP_VERSION != env.TAG }
             }
-            environment
             steps {
                 echo 'Need to update version!'
                 script {
