@@ -28,7 +28,7 @@ pipeline {
                 }
                 sh "git status"
                 sh "git add ."
-                sh 'git commit -a --author=vlyamzin \\<vlad.lyamzin@avenga.com\\>'
+                sh 'git commit -a --author=\\"vlyamzin \\<vlad.lyamzin@avenga.com\\>\\" -m=\\"New Version!\\"'
             }
         }
     }
