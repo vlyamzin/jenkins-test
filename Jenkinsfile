@@ -30,7 +30,7 @@ pipeline {
                 sh 'git config user.name \\"vlyamzin\\"'
                 sh 'git config user.email \\"vlad.lyamzin@avenga.com\\"'
                 sh 'git add .'
-                sh 'git commit'
+                sh 'git commit -m \\"a\\"'
             }
         }
     }
