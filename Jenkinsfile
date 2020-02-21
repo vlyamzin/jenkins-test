@@ -25,10 +25,9 @@ pipeline {
                     def input = readJSON file: 'package.json'
                     input['version'] = env.TAG
                     writeJSON file: 'package.json', json: input, pretty: 4
+                    sh(returnStdout: true, script: "git tag")
+                    sh(returnStdout: true, script: "git commit -a --author=\"vlyamzin \<vlad.lyamzin@avenga.com\>\" -m=\"New Version!\"")
                 }
-                sh "git status"
-                sh "git add ."
-                sh 'git commit -a --author=\\"vlyamzin \\<vlad.lyamzin@avenga.com\\>\\" -m=\\"New Version!\\"'
             }
         }
     }
