@@ -13,8 +13,6 @@ pipeline {
                     env.APP_VERSION = sh(returnStdout: true, script: "node -p -e \"require('./package.json').version\"").trim()
                     env.TAG = sh(returnStdout: true, script: "git tag").trim()
                 }
-                sh "git config user.email vlad.lyamzin@avenga.com"
-                sh "git config user.name Vlad Lyamzin"
             }
         }
         stage('compare') {
@@ -29,7 +27,7 @@ pipeline {
                     writeJSON file: 'package.json', json: input, pretty: 4
                 }
                 sh "git status"
-                sh "git commit -a --author=\"Vlad Lyamzin <vlad.lyamzin@avenga.com>\""
+                sh "git commit -a --author='Vlad Lyamzin <vlad.lyamzin@avenga.com>'"
             }
         }
     }
