@@ -26,7 +26,7 @@ pipeline {
                     input['version'] = env.TAG
                     writeJSON file: 'package.json', json: input, pretty: 4
                 }
-                sh "git commit -a -m Version: ${env.TAG}"
+                sh "git commit -m Version: ${env.TAG}"
                 sh "git push origin master"
             }
         }
