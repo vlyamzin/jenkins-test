@@ -26,7 +26,7 @@ pipeline {
                     input['version'] = env.TAG
                     writeJSON file: 'package.json', json: input, pretty: 4
                     sh(returnStdout: true, script: "git tag")
-                    sh(returnStdout: true, script: "git commit -a --author=\"vlyamzin \<vlad.lyamzin@avenga.com\>\" -m=\"New Version!\"")
+                    sh(returnStdout: true, script: "git commit -a --author=\"vlyamzin <vlad.lyamzin@avenga.com>\" -m=\"New Version!\"")
                 }
             }
         }
