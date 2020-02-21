@@ -29,7 +29,8 @@ pipeline {
                 sh "git status"
                 sh 'git config user.name \\"vlyamzin\\"'
                 sh 'git config user.email \\"vlad.lyamzin@avenga.com\\"'
-                sh 'git commit -a -m \\"New Version\\"'
+                sh 'git add .'
+                sh 'git commit'
             }
         }
     }
