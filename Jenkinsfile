@@ -27,7 +27,7 @@ pipeline {
                     writeJSON file: 'package.json', json: input, pretty: 4
                 }
                 sh "git status"
-                sh "git commit -a --author=\\"Vlad Lyamzin <vlad.lyamzin@avenga.com>\\""
+                sh 'git commit -a --author=\\"Vlad Lyamzin <vlad.lyamzin@avenga.com>\\"'
             }
         }
     }
