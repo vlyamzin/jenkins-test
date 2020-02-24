@@ -17,7 +17,7 @@ pipeline {
         }
         stage('compare') {
             when {
-                expression { env.APP_VERSION != env.TAG }
+                expression { (env.APP_VERSION != env.TAG) && (GIT_BRANCH == "origin/master") }
             }
             steps {
                 echo 'Need to update version!'
@@ -36,7 +36,7 @@ pipeline {
                         script {
                             env.encodedPass=URLEncoder.encode(password, "UTF-8")
                         }
-                        sh('git push https://${username}:${encodedPass}@github.com/vlyamzin/jenkins-test.git HEAD:${GIT_BRANCH}')
+                        sh('git push https://${username}:${encodedPass}@github.com/vlyamzin/jenkins-test.git HEAD:master')
                     }
                 }
             }
