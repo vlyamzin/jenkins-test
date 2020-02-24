@@ -27,8 +27,6 @@ pipeline {
                     writeJSON file: 'package.json', json: input, pretty: 4
                 }
                 sh "git status"
-                sh 'git config user.name \\"vlyamzin\\"'
-                sh 'git config user.email \\"vlyamzin@corevalue.net\\"'
                 sh 'git commit -am \\"test\\"'
                 script {
                     withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')])
