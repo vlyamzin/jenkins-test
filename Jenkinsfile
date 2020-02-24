@@ -26,8 +26,12 @@ pipeline {
                     input['version'] = env.TAG
                     writeJSON file: 'package.json', json: input, pretty: 4
                 }
-                sh "git status"
-                sh 'git commit -am \\"test\\"'
+                sh '''
+                    git status
+                    git config user.name "vlyamzin"
+                    git config user.email "vlyamzin@corevalue.net"
+                    git commit -am "New version $TAG"
+                '''
                 script {
                     withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')])
                     {
