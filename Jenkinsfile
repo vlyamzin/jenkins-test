@@ -33,8 +33,10 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')])
                     {
-                        echo "$username"
-                        sh('git push https://$username:$password@github.com/vlyamzin/jenkins-test.git HEAD:master')
+                        script {
+                            env.encodedPass=URLEncoder.encode(password, "UTF-8")
+                        }
+                        sh('git push https://${username}:${encodedPass}@github.com/vlyamzin/jenkins-test.git HEAD:master')
                     }
                 }
             }
