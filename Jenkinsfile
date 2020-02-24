@@ -27,17 +27,13 @@ pipeline {
                     writeJSON file: 'package.json', json: input, pretty: 4
                 }
                 sh "git status"
-                sh 'git config user.name \\"vlyamzin\\"'
-                sh 'git config user.email \\"vlad.lyamzin@avenga.com\\"'
-                sh 'git config --unset http.proxy'
-                sh 'git config --unset https.proxy'
-                sh 'git add .'
-                sh 'git commit -m \\"a\\"'
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')])
-                    {
-                        sh('git push https://${username}:${password}@207.97.227.239/vlyamzin/jenkins-test.git HEAD:master')
-                    }
+                sshagent(credentials: ['vlyamzin-ssh']) {
+                    sh '''
+                        git config user.name "vlyamzin"
+                        git config user.email "vlyamzin@corevalue.net"
+                        git commit -am 'New version'
+                        git push https://github.com/vlyamzin/jenkins-test.git HEAD:master
+                    '''
                 }
             }
         }
