@@ -32,7 +32,7 @@ pipeline {
                         git config user.name "vlyamzin"
                         git config user.email "vlyamzin@corevalue.net"
                         git commit -am 'New version'
-                        git push https://github.com/vlyamzin/jenkins-test.git HEAD:master
+                        git push origin master
                     '''
                 }
             }
