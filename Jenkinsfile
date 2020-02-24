@@ -36,7 +36,7 @@ pipeline {
                         script {
                             env.encodedPass=URLEncoder.encode(password, "UTF-8")
                         }
-                        sh('git push https://${username}:${encodedPass}@github.com/vlyamzin/jenkins-test.git HEAD:master')
+                        sh('git push https://${username}:${encodedPass}@github.com/vlyamzin/jenkins-test.git HEAD:${GIT_BRANCH}')
                     }
                 }
             }
