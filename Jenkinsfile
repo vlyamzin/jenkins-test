@@ -29,6 +29,8 @@ pipeline {
                 sh "git status"
                 sh 'git config user.name \\"vlyamzin\\"'
                 sh 'git config user.email \\"vlad.lyamzin@avenga.com\\"'
+                sh 'git config --unset http.proxy'
+                sh 'git config --unset https.proxy'
                 sh 'git add .'
                 sh 'git commit -m \\"a\\"'
                 script {
