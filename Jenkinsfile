@@ -27,13 +27,14 @@ pipeline {
                     writeJSON file: 'package.json', json: input, pretty: 4
                 }
                 sh "git status"
-                sshagent(credentials: ['vlyamzin-ssh']) {
-                    sh '''
-                        git config user.name "vlyamzin"
-                        git config user.email "vlyamzin@corevalue.net"
-                        git commit -am 'New version'
-                        git push origin HEAD:master
-                    '''
+                sh 'git config user.name \\"vlyamzin\\"'
+                sh 'git config user.email \\"vlyamzin@corevalue.net\\"'
+                sh 'git commit -am \\"test\\"'
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'vlyamzin-github', usernameVariable: 'username', passwordVariable: 'password')])
+                    {
+                        sh('git push https://username:password@github.com/vlyamzin/jenkins-test.git HEAD:master')
+                    }
                 }
             }
         }
@@ -42,5 +43,6 @@ pipeline {
       always {
           cleanWs()
       }
+    
     }
 }
